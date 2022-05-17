@@ -11,5 +11,6 @@
     <orderEntry type="library" name="react" level="application" />
     <orderEntry type="library" name="react-dom" level="application" />
     <orderEntry type="library" name="babel-standalone" level="application" />
+    <orderEntry type="library" name="61a4e6be16" level="application" />
   </component>
 </module>
