@@ -6,10 +6,11 @@ const jwt = require('jsonwebtoken');
 const userSchema = mongoose.Schema({
     name:{
         type: String,
-        maxlength: 50
+        minlength: 2
     },
     email:{
         type: String,
+        match:/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
         trim: true,
         unique: 1
     },
