@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
 import styled from "styled-components";
+import { fetchSignUp } from "../api";
 
 
 
@@ -27,11 +29,14 @@ const SubmitBtn = styled.button`
 
 function SignUp() {
   const { register, handleSubmit, formState: {errors}, setError } = useForm();
+  const mutation = useMutation(fetchSignUp);
   const onValid = (data) => {
     if(data.password !== data.confirmPassword) {
       setError("confirmPassword", {message:"비밀번호가 일치하지 않습니다."}, {shouldFocus: true})
     }
+  mutation.mutate(data)
   }
+
   return(
     <Container>
       <h1>sign up</h1>

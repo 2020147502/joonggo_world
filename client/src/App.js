@@ -1,8 +1,9 @@
+import { createGlobalStyle } from "styled-components";
+import { ReactQueryDevtools } from "react-query/devtools";
 import NaverGNB from "./components/NaverGNB";
 import FrontImg from "./components/FrontImg";
 import GroupArea from "./components/GroupArea";
 import MainArea from "./components/MainArea";
-import { createGlobalStyle } from "styled-components";
 import SignUp from "./components/SignUp";
 
 const GlobalStyle = createGlobalStyle`
@@ -58,12 +59,13 @@ table {
 function App() {
   return (
     <>
-{/*       <GlobalStyle />
+   		<GlobalStyle />
       <NaverGNB />
       <FrontImg />
       <GroupArea />
-      <MainArea /> */}
+      <MainArea />
       <SignUp />
+			<ReactQueryDevtools initialIsOpen = {true} />
     </>
   );
 }
