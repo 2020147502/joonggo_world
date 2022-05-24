@@ -5,6 +5,7 @@ import FrontImg from "./components/FrontImg";
 import GroupArea from "./components/GroupArea";
 import MainArea from "./components/MainArea";
 import SignUp from "./components/SignUp";
+import Board from "./board/Board"
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -66,6 +67,7 @@ function App() {
       <MainArea />
       <SignUp />
 			<ReactQueryDevtools initialIsOpen = {true} />
+      <Board/>
     </>
   );
 }
