@@ -1,3 +1,8 @@
+import {Link} from "react-router-dom"
+
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 function GroupArea() {
   return (
     <div>
@@ -35,9 +40,10 @@ function GroupArea() {
           </div>
         </div>
         <div className="GroupArea-CafeInfo-Join">
-          <a href="">
-            <p>카페 가입하기</p>
-          </a>
+          <Link to={"/board/write"}>
+            <p>카페 글쓰기</p>
+          </Link>
+
         </div>
         <div className="GroupArea-CafeInfo-Chat">
           <a href="">
@@ -55,7 +61,9 @@ function GroupArea() {
       <div className="GroupArea-CafeMenu">
         <div>
           <i className="fa-solid fa-file-lines"></i>
-          <a href="">전체글보기</a>
+          <Link to={"/board/list"}>
+            전체글보기
+          </Link>
           <span>1(글수)</span>
         </div>
         <ul>

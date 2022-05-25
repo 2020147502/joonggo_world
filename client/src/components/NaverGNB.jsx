@@ -1,3 +1,7 @@
+import {Link} from "react-router-dom"
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 function NaverGNB() {
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -16,7 +20,7 @@ function NaverGNB() {
         }}
       >
         <div>
-          <a href="https://section.cafe.naver.com/ca-fe/">카페홈</a>
+          <Link to="/">카페홈</Link>
           <i className="fa-solid fa-grip-lines-vertical"></i>
         </div>
         <div>
@@ -43,7 +47,7 @@ function NaverGNB() {
           <i className="fa-solid fa-grip-lines-vertical"></i>
         </div>
         <div>
-          <a href="">로그인</a>
+          <Link to="/signup">로그인</Link>
           <i className="fa-solid fa-grip-lines-vertical"></i>
         </div>
         <div>
