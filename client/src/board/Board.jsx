@@ -27,11 +27,7 @@ function Board() {
   };
 
   return (
-    // <div>
-    //   <BoardList boardList={data} />
-    //   <Write onCreate={onCreate} />
-    // </div>
-    <BrowserRouter>
+
       <Routes>
         <Route
           path="/board/list"
@@ -39,7 +35,6 @@ function Board() {
         />
         <Route path="/board/write" element={<Write onCreate={onCreate} />} />
       </Routes>
-    </BrowserRouter>
   );
 }
 

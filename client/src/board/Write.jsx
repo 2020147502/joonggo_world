@@ -1,5 +1,22 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Container = styled.div`
+  max-width: 500px;
+  margin: 0px auto;
+  
+  h1 {
+    text-transform: uppercase;
+    font-size: 50px;
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
 
 const Write = ({ onCreate }) => {
   const [state, setState] = useState({
@@ -35,6 +52,7 @@ const Write = ({ onCreate }) => {
   };
 
   return (
+    <Container>
     <div className="Write">
       <h1>카페 글쓰기</h1>
       <div>
@@ -62,6 +80,7 @@ const Write = ({ onCreate }) => {
         </button>
       </Link>
     </div>
+    </Container>
   );
 };
 

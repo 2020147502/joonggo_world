@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from "react-query/devtools";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+
 import NaverGNB from "./components/NaverGNB";
 import FrontImg from "./components/FrontImg";
 import GroupArea from "./components/GroupArea";
@@ -59,16 +61,19 @@ table {
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
    		<GlobalStyle />
       <NaverGNB />
       <FrontImg />
       <GroupArea />
-      <MainArea />
-      <SignUp />
-			<ReactQueryDevtools initialIsOpen = {true} />
       <Board/>
-    </>
+      <Routes>
+        <Route path={"/signup"} element={<SignUp/>}/>
+        <Route path={"/"} element={<MainArea/>}/>
+      </Routes>
+      <ReactQueryDevtools initialIsOpen = {true} />
+
+    </BrowserRouter>
   );
 }
 
