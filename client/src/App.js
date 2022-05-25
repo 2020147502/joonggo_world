@@ -5,6 +5,7 @@ import FrontImg from "./components/FrontImg";
 import GroupArea from "./components/GroupArea";
 import MainArea from "./components/MainArea";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -59,11 +60,12 @@ table {
 function App() {
   return (
     <>
-   		<GlobalStyle />
+			<GlobalStyle />
       <NaverGNB />
       <FrontImg />
       <GroupArea />
       <MainArea />
+			<Login />
       <SignUp />
 			<ReactQueryDevtools initialIsOpen = {true} />
     </>
