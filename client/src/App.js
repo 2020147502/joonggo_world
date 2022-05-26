@@ -7,6 +7,7 @@ import FrontImg from "./components/FrontImg";
 import GroupArea from "./components/GroupArea";
 import MainArea from "./components/MainArea";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 import Board from "./board/Board"
 
 const GlobalStyle = createGlobalStyle`
