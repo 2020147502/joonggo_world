@@ -26,15 +26,24 @@ function Board() {
     setData(newBoardList);
   };
 
-  return (
+  const onEdit = (targetId, newContent) => {
+    setData(
+      data.map((it) =>
+        it.id === targetId ? { ...it, content: newContent } : it
+      )
+    );
+  };
 
-      <Routes>
-        <Route
-          path="/board/list"
-          element={<BoardList onDelete={onDelete} boardList={data} />}
-        />
-        <Route path="/board/write" element={<Write onCreate={onCreate} />} />
-      </Routes>
+  return (
+    <Routes>
+      <Route
+        path="/board/list"
+        element={
+          <BoardList onEdit={onEdit} onDelete={onDelete} boardList={data} />
+        }
+      />
+      <Route path="/board/write" element={<Write onCreate={onCreate} />} />
+    </Routes>
   );
 }
 

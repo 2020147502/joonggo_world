@@ -18,18 +18,19 @@ const Container = styled.div`
 `;
 
 
-const BoardList = ({ onDelete, boardList }) => {
+const BoardList = ({ onEdit, onDelete, boardList }) => {
   return (
     <Container>
     <div>
       <h1>전체글보기</h1>
       <h3>{boardList.length}개의 일기가 있습니다.</h3>
       <div>
-        {boardList.map((element) => (
+        {boardList.map((it) => (
           <BoardItem
-            key={element.id}
-            {...element}
+            key={it.id}
+            {...it}
             onDelete={onDelete}
+            onEdit = {onEdit}
           ></BoardItem>
         ))}
       </div>
