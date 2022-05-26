@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import styled from "styled-components";
 import { fetchSignUp } from "../api";
+import Login from "./Login";
 
 
 
@@ -73,6 +74,7 @@ function SignUp() {
         <span>{errors?.confirmPassword?.message}</span>
         <SubmitBtn>sign up</SubmitBtn>
       </form>
+      <Login />
     </Container>
   )
 }

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { fetchLogin } from "../api";
+import { useState } from "react";
 
 
 const Container = styled.div`
@@ -22,10 +23,21 @@ const SignUpBtn = styled.a``;
 
 function Login() {
   const { register, handleSubmit, formState:{errors} } = useForm();
+  const [ isLogin, setIsLogin ] = useState(false);
   const mutation = useMutation(fetchLogin);
   const onValid = (data) => {
-    mutation.mutate(data)
+    mutation
+      .mutateAsync(data)
+      .then((res)=>{
+        if(res.loginSuccess===true){
+          setIsLogin(true);
+          /* sessionStorage.setItem("", res.userId); */
+        } else {
+          alert(res.message);
+        }
+      })
   }
+  
   return(
     <Container>
       <h1>안녕하세요,<br />중고나라입니다</h1>
