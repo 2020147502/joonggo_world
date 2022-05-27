@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import { fetchLogin } from "../api";
-import { useState } from "react";
+import { useMutation, useQuery } from "react-query";
+import { fetchAuth, fetchLogin } from "../api";
+import { useNavigate } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -23,21 +23,25 @@ const SignUpBtn = styled.a``;
 
 function Login() {
   const { register, handleSubmit, formState:{errors} } = useForm();
-  const [ isLogin, setIsLogin ] = useState(false);
   const mutation = useMutation(fetchLogin);
+/*   const [isLogin, setIsLogin] = useState(false); */
+  const { data:user } = useQuery("user",fetchAuth);
+  const navigate = useNavigate();
   const onValid = (data) => {
     mutation
       .mutateAsync(data)
       .then((res)=>{
-        if(res.loginSuccess===true){
-          setIsLogin(true);
-          /* sessionStorage.setItem("", res.userId); */
+        if(res.loginSuccess===true) {
+          localStorage.setItem("token", res.userId)
+          localStorage.setItem("username", user.username)
+/*           setIsLogin(true)
+          localStorage.setItem("isLogin", isLogin) */
+          navigate("/")
         } else {
-          alert(res.message);
+            alert(res.message);
         }
       })
   }
-  
   return(
     <Container>
       <h1>안녕하세요,<br />중고나라입니다</h1>
@@ -47,8 +51,8 @@ function Login() {
         <Input {...register("password", {required:"비밀번호를 입력해주세요"})}></Input>
         <span>{errors?.password?.message}</span>
         <span>
-          <Input id="remember" type="checkbox"{...register("remember")}></Input>
-          <label htmlFor="remember">비밀번호 저장하기</label>
+          <Input id="autoLogin" type="checkbox"{...register("autoLogin")}></Input>
+          <label htmlFor="autoLogin">자동로그인</label>
         </span>
         <Button>로그인</Button>
         <hr />

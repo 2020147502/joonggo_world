@@ -20,7 +20,6 @@ function NaverGNB() {
         }}
       >
         <div>
-          <Link to="/">카페홈</Link>
           <i className="fa-solid fa-grip-lines-vertical"></i>
         </div>
         <div>
@@ -47,7 +46,6 @@ function NaverGNB() {
           <i className="fa-solid fa-grip-lines-vertical"></i>
         </div>
         <div>
-          <Link to="/signup">로그인</Link>
           <i className="fa-solid fa-grip-lines-vertical"></i>
         </div>
         <div>

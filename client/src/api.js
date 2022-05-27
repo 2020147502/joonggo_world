@@ -25,3 +25,8 @@ export async function fetchLogin(user) {
     })
   })).json()
 };
+
+export async function fetchAuth() {
+  return await(await fetch("/api/users/auth")).json()
+}
+

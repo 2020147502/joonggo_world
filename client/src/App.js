@@ -7,8 +7,8 @@ import FrontImg from "./components/FrontImg";
 import GroupArea from "./components/GroupArea";
 import MainArea from "./components/MainArea";
 import SignUp from "./components/SignUp";
-import Login from "./components/Login";
 import Board from "./board/Board"
+import Header from "./components/Header";
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -64,6 +64,7 @@ function App() {
   return (
     <BrowserRouter>
    		<GlobalStyle />
+      <Header />
       <NaverGNB />
       <FrontImg />
       <GroupArea />
@@ -73,7 +74,6 @@ function App() {
         <Route path={"/"} element={<MainArea/>}/>
       </Routes>
       <ReactQueryDevtools initialIsOpen = {true} />
-
     </BrowserRouter>
   );
 }
