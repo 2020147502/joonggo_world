@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 const { auth } = require('./middleware/auth');
 const { User } = require("./models/User");
+const { Board } = require("./models/Board");
 
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -17,12 +18,7 @@ mongoose.connect(config.mongoURI,{
 }).then(() => {
     console.log('mongo db connected...')}).catch((err) => {
         console.log(err)})
-app.get('/',(req,res) => {
-    res.sendFile(__dirname + '/public/index.html')
-})
-app.get('/api/hello',(req,res) => {
-    res.send("안녕하세요")
-})
+// --------------------로그인----------------------
 app.post('/api/users/register',(req,res) => {
     const user = new User(req.body);
     user.save((err,userInfo) => {
@@ -79,5 +75,18 @@ app.get('/api/users/logout',auth,(req,res)=>{
                 success: true
             })
         })
+})
+
+// ----------------------게시판------------------------
+
+app.post('/api/board/register',auth,(req,res) => {
+    const post = new Board(req.body);
+    post.save((err,BoardInfo) => {
+        if(err) return res.json({ success: false,err})
+        return res.status(200).json({
+            success: true
+        })
+    })
+
 })
 app.listen(port, () => console.log(`Example app listening on port${port}!`))
