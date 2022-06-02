@@ -10,7 +10,11 @@ const BoardSchema = mongoose.Schema({
         type: String,
         required : true
     },
-    username:{
+    type:{
+        type:String,
+        required : true
+    },
+    author:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'User',
         required:true
@@ -23,7 +27,10 @@ const BoardSchema = mongoose.Schema({
         type: Number,
         required : true
     },
-    image:String,
+    images:{
+        type:Array,
+        default:[]
+    },
     createdDate:{
         type:Date,
         default:Date.now
