@@ -2,12 +2,16 @@ const express = require('express')
 const router = express.Router()
 const { User } = require("../models/User");
 
+
 const { auth } = require("../middleware/auth");
 
+
 // --------------------로그인----------------------
+
+
 router.post('/register',(req,res) => {
     const user = new User(req.body);
-    user.save((err,userInfo) => {
+    user.save((err) => {
         if(err) return res.json({ success: false,err})
         return res.status(200).json({
             success: true
@@ -48,8 +52,8 @@ router.get('/auth',auth,(req,res)=>{
         role:req.user.role,
         image:req.user.image
     })
-
 })
+
 
 router.get('/logout',auth,(req,res)=>{
     User.findOneAndUpdate({_id: req.user._id},
