@@ -5,7 +5,7 @@ const { User } = require("../models/User");
 const { auth } = require("../middleware/auth");
 
 // --------------------로그인----------------------
-app.post('/register',(req,res) => {
+router.post('/register',(req,res) => {
     const user = new User(req.body);
     user.save((err,userInfo) => {
         if(err) return res.json({ success: false,err})
@@ -13,10 +13,9 @@ app.post('/register',(req,res) => {
             success: true
         })
     })
-
 })
 
-app.post('/login',(req,res) => {
+router.post('/login',(req,res) => {
     User.findOne({ email:req.body.email },(err,user) => {
         if(!user){
             return res.json({
@@ -39,20 +38,20 @@ app.post('/login',(req,res) => {
     })
 })
 
-app.get('/auth',auth,(req,res)=>{
+router.get('/auth',auth,(req,res)=>{
     res.status(200).json({
         _id:req.user._id,
         isAdmin: req.user.role ===0 ? false:true, 
         isAuth:true,
         email: req.user.email,
-        name:req.user.lastname,
+        name:req.user.username,
         role:req.user.role,
         image:req.user.image
     })
 
 })
 
-app.get('/logout',auth,(req,res)=>{
+router.get('/logout',auth,(req,res)=>{
     User.findOneAndUpdate({_id: req.user._id},
         {token:""}
         ,(err,user) => {

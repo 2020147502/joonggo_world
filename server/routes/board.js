@@ -3,7 +3,7 @@ const router = express.Router()
 const { Board } = require("../models/Board");
 // ----------------------게시판------------------------
 
-app.post('/',(req,res) => {
+router.post('/',(req,res) => {
     const post = new Board(req.body);
     post.save((err) => {
         if(err) return res.json({ success: false,err})

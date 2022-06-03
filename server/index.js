@@ -19,7 +19,7 @@ mongoose.connect(config.mongoURI,{
         console.log(err)})
 
 app.use('/api/users', require('./routes/users'));
-app.use('/api/board', require('./routes/product'));
+app.use('/api/board', require('./routes/board'));
 
 
 

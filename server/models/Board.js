@@ -30,28 +30,21 @@ const BoardSchema = mongoose.Schema({
     images:{
         type:Array,
         default:[]
-    },
-    createdDate:{
-        type:Date,
-        default:Date.now
-    },
-    updatedDate:{
-        type:Date
     }
-})
+}, { timestamps : true})
 
-BoardSchema.methods.getCreatedDate = function () {
-    var date = this.createdAt;
-    return date.getFullYear() + "-" + get2digits(date.getMonth()+1)+ "-" + get2digits(date.getDate());
-};
+// BoardSchema.methods.getCreatedDate = function () {
+//     var date = this.createdAt;
+//     return date.getFullYear() + "-" + get2digits(date.getMonth()+1)+ "-" + get2digits(date.getDate());
+// };
 
-BoardSchema.methods.getCreatedTime = function () {
-    var date = this.createdAt;
-    return get2digits(date.getHours()) + ":" + get2digits(date.getMinutes())+ ":" + get2digits(date.getSeconds());
-};
-function get2digits(num){
-    return ("0" + num).slice(-2); 
-}
+// BoardSchema.methods.getCreatedTime = function () {
+//     var date = this.createdAt;
+//     return get2digits(date.getHours()) + ":" + get2digits(date.getMinutes())+ ":" + get2digits(date.getSeconds());
+// };
+// function get2digits(num){
+//     return ("0" + num).slice(-2); 
+// }
 
 const Board = mongoose.model('Board', BoardSchema)
 
