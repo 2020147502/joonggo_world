@@ -67,7 +67,6 @@ app.get('/api/users/auth',auth,(req,res)=>{
         role:req.user.role,
         image:req.user.image
     })
-
 })
 
 app.get('/api/users/logout',auth,(req,res)=>{

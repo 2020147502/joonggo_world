@@ -1,4 +1,5 @@
 
+
 export async function fetchSignUp(user) {
   return await (await fetch("/api/users/register", {
     method: "post",
@@ -27,6 +28,6 @@ export async function fetchLogin(user) {
 };
 
 export async function fetchAuth() {
-  return await(await fetch("/api/users/auth")).json()
-}
+  return await (await fetch("/api/users/auth")).json()
+};
 

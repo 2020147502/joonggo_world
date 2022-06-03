@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "react-query";
-import { fetchAuth, fetchLogin } from "../api";
+import { useMutation } from "react-query";
+import { fetchLogin } from "../api";
 import { useNavigate } from "react-router-dom";
 
 
@@ -23,24 +23,19 @@ const SignUpBtn = styled.a``;
 
 function Login() {
   const { register, handleSubmit, formState:{errors} } = useForm();
-  const mutation = useMutation(fetchLogin);
-/*   const [isLogin, setIsLogin] = useState(false); */
-  const { data:user } = useQuery("user",fetchAuth);
+  const mutation = useMutation(fetchLogin)
   const navigate = useNavigate();
   const onValid = (data) => {
     mutation
-      .mutateAsync(data)
-      .then((res)=>{
-        if(res.loginSuccess===true) {
-          localStorage.setItem("token", res.userId)
-          localStorage.setItem("username", user.username)
-/*           setIsLogin(true)
-          localStorage.setItem("isLogin", isLogin) */
-          navigate("/")
-        } else {
-            alert(res.message);
-        }
-      })
+    .mutateAsync(data)
+    .then((res)=>{
+      localStorage.setItem("isLogin", res.loginSuccess)
+      if(res.loginSuccess) {
+        navigate("/")
+      } else {
+        alert(res.message)
+      }
+    })
   }
   return(
     <Container>
