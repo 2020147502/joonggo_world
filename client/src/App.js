@@ -1,12 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from "react-query/devtools";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import NaverGNB from "./components/NaverGNB";
-import FrontImg from "./components/FrontImg";
 import GroupArea from "./components/GroupArea";
 import MainArea from "./components/MainArea";
-import Board from "./board/Board"
+import Board from "./board/Board";
 import Header from "./components/Header";
 import Mypage from "./components/Mypage";
 import Login from "./components/Login";
@@ -64,16 +63,17 @@ table {
 function App() {
   return (
     <BrowserRouter>
-   		<GlobalStyle />
+      <GlobalStyle />
       <Header />
       <GroupArea />
-      <Board/>
+      <Board />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<MainArea />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/board" element={<Board />} />
       </Routes>
-      <ReactQueryDevtools initialIsOpen = {true} />
+      <ReactQueryDevtools initialIsOpen={true} />
     </BrowserRouter>
   );
 }

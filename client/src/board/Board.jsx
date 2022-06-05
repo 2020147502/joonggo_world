@@ -1,8 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import BoardList from "./BoardList";
 import Write from "./Write";
+import BoardEach from "./BoardEach";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useRef, useState } from "react";
+import { fetchBoard } from "../api";
 
 function Board() {
   const [data, setData] = useState([]);
@@ -36,13 +38,9 @@ function Board() {
 
   return (
     <Routes>
-      <Route
-        path="/board/list"
-        element={
-          <BoardList onEdit={onEdit} onDelete={onDelete} boardList={data} />
-        }
-      />
+      <Route path="/board/list" element={<BoardList boardList={data} />} />
       <Route path="/board/write" element={<Write onCreate={onCreate} />} />
+      <Route path="/board/:boardId" element={<BoardEach />} />
     </Routes>
   );
 }
