@@ -2,8 +2,6 @@ import { createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from "react-query/devtools";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
-import NaverGNB from "./components/NaverGNB";
-import FrontImg from "./components/FrontImg";
 import GroupArea from "./components/GroupArea";
 import MainArea from "./components/MainArea";
 import Board from "./board/Board"

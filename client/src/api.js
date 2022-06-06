@@ -31,3 +31,7 @@ export async function fetchAuth() {
   return await (await fetch("/api/users/auth")).json()
 };
 
+
+export async function fetchLogout() {
+  return await fetch("/api/users/logout")
+};
