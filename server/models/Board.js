@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+var autoIncrement = require('mongoose-auto-increment');
 const BoardSchema = mongoose.Schema({
     title:{
         type: String,
@@ -10,22 +10,21 @@ const BoardSchema = mongoose.Schema({
         type: String,
         required : true
     },
-    type:{
+    product_id:{
+        type: Number
+    },
+    product_type:{
         type:String,
         required : true
     },
     author:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'User',
-        required:true
+        ref:'User'
+        // required:
     },
     views: {
         type: Number,
         default : 0
-    },
-    numId:{
-        type: Number,
-        required : true
     },
     images:{
         type:Array,
@@ -33,19 +32,26 @@ const BoardSchema = mongoose.Schema({
     }
 }, { timestamps : true})
 
-// BoardSchema.methods.getCreatedDate = function () {
-//     var date = this.createdAt;
-//     return date.getFullYear() + "-" + get2digits(date.getMonth()+1)+ "-" + get2digits(date.getDate());
-// };
+BoardSchema.index(
+    {
+      title: "text",
+      body: "text",
+    },
+    {
+      weights: {
+        title: 5,
+        body: 1,
+      },
+    }
+  );
 
-// BoardSchema.methods.getCreatedTime = function () {
-//     var date = this.createdAt;
-//     return get2digits(date.getHours()) + ":" + get2digits(date.getMinutes())+ ":" + get2digits(date.getSeconds());
-// };
-// function get2digits(num){
-//     return ("0" + num).slice(-2); 
-// }
-
+autoIncrement.initialize(mongoose.connection)
+BoardSchema.plugin(autoIncrement.plugin,{
+	model : 'Board',
+	field : 'product_id',
+	startAt : 1, //시작 
+	increment : 1 // 증가
+});
 const Board = mongoose.model('Board', BoardSchema)
 
 module.exports = { Board }
