@@ -42,7 +42,7 @@ router.post('/products',(req,res) => {
     
     if (term) {
         Board.find({"product_type":product_type})
-            // .polulate('author')
+            .polulate('author')
             .sort({'product_id':-1})
             .skip(skip)
             .limit(limit)
@@ -53,7 +53,7 @@ router.post('/products',(req,res) => {
     }
     else {
         Board.find({"product_type":product_type})
-            // .polulate('author')
+            .polulate('author')
             .sort({'product_id':-1})
             .skip(skip)
             .limit(limit)
@@ -84,4 +84,15 @@ router.post('/delete',(req,res) =>{
 }))
 })
 
+router.get("/products_by_id", (req, res) => {
+    let productIds = req.query.id;
+    Board.findById(productIds)
+       .populate("author")
+      .exec((err, product) => {
+        if (err) return res.status(400).send(err);
+        console.log(product.views++)
+        product.save()
+        return res.status(200).send(product);
+      });
+  });
 module.exports = router;
