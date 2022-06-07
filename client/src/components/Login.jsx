@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useQueryClient, useMutation } from "react-query";
 import { fetchLogin } from "../api";
 import { useNavigate } from "react-router-dom";
 
@@ -25,13 +25,14 @@ function Login() {
   const { register, handleSubmit, formState:{errors} } = useForm();
   const mutation = useMutation(fetchLogin)
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const onValid = (data) => {
     mutation
     .mutateAsync(data)
     .then((res)=>{
-      localStorage.setItem("isLogin", res.loginSuccess)
       if(res.loginSuccess) {
         navigate("/")
+        queryClient.invalidateQueries("auth")
       } else {
         alert(res.message)
       }

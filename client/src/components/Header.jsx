@@ -20,13 +20,12 @@ const LoginBtn = styled.button``;
 
 function Header() {
   const {data:user} = useQuery("auth", fetchAuth);
-  const isLogin = localStorage.getItem("isLogin");
   return(
         <Container>
           <Link to="/">
             <Logo>중고마켓</Logo>
           </Link>
-          {user?.isAuth && isLogin ? (            
+          {user?.isAuth ? (            
             <Link to="/Mypage">
               <LoginBtn>마이페이지</LoginBtn>
             </Link>
