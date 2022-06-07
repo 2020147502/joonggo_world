@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,7 +43,6 @@ function GroupArea() {
           <Link to={"/board/write"}>
             <p>카페 글쓰기</p>
           </Link>
-
         </div>
         <div className="GroupArea-CafeInfo-Chat">
           <a href="">
@@ -61,9 +60,7 @@ function GroupArea() {
       <div className="GroupArea-CafeMenu">
         <div>
           <i className="fa-solid fa-file-lines"></i>
-          <Link to={"/board/list"}>
-            전체글보기
-          </Link>
+          <Link to={"/board/list"}>전체글보기</Link>
           <span>1(글수)</span>
         </div>
         <ul>
@@ -75,19 +72,19 @@ function GroupArea() {
 
           <li>
             <i className="fa-solid fa-file-lines"></i>
-            <a href="">중고폰/모바일</a>
+            <a href="">Sell</a>
             <i className="fa-solid fa-n"></i>
           </li>
 
           <li>
             <i className="fa-solid fa-file-lines"></i>
-            <a href="">컴퓨터</a>
+            <a href="">Buy</a>
             <i className="fa-solid fa-n"></i>
           </li>
         </ul>
       </div>
     </div>
   );
-};
+}
 
 export default GroupArea;
