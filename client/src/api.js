@@ -35,12 +35,10 @@ export async function fetchAuth() {
   return await (await fetch("/api/users/auth")).json();
 }
 
-<<<<<<< HEAD
 
 export async function fetchLogout() {
   return await fetch("/api/users/logout")
 };
-=======
 export async function fetchBoard(board, user) {
   return await (
     await fetch("/api/users/board", {
@@ -60,4 +58,3 @@ export async function fetchBoard(board, user) {
     })
   ).json();
 }
->>>>>>> 2c6486c56818e1e62db30ee7514bbb8462cc9f69

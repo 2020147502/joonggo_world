@@ -84,6 +84,7 @@ router.post('/delete',(req,res) =>{
 }))
 })
 
+// id로 상품정보 불러오기
 router.get("/products_by_id", (req, res) => {
     let productIds = req.query.id;
     Board.findById(productIds)
