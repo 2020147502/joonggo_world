@@ -1,47 +1,40 @@
-import mongoose from "mongoose";
 
 export async function fetchSignUp(user) {
-  return await (
-    await fetch("/api/users/register", {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        username: user.username,
-        email: user.email,
-        password: user.password,
-      }),
+  return await (await fetch("/api/users/register", {
+    method: "post",
+    headers: {
+      "content-type" : "application/json"
+    },
+    body:JSON.stringify({
+      "username": user.username,
+      "email": user.email,
+      "password": user.password
     })
-  ).json();
-}
+  })).json();
+};
 
 export async function fetchLogin(user) {
-  return await (
-    await fetch("/api/users/board", {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        email: user.email,
-        password: user.password,
-      }),
+  return await(await fetch("/api/users/login", {
+    method: "post",
+    headers: {
+      "content-type" : "application/json"
+    },
+    body:JSON.stringify({
+      "email": user.email,
+      "password": user.password
     })
-  ).json();
-}
+  })).json()
+};
 
 export async function fetchAuth() {
-  return await (await fetch("/api/users/auth")).json();
-}
-
-<<<<<<< HEAD
+  return await (await fetch("/api/users/auth")).json()
+};
 
 export async function fetchLogout() {
   return await fetch("/api/users/logout")
 };
-=======
-export async function fetchBoard(board, user) {
+
+/* export async function fetchBoard(board, user) {
   return await (
     await fetch("/api/users/board", {
       method: "post",
@@ -59,5 +52,4 @@ export async function fetchBoard(board, user) {
       }),
     })
   ).json();
-}
->>>>>>> 2c6486c56818e1e62db30ee7514bbb8462cc9f69
+} */

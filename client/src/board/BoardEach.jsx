@@ -1,4 +1,4 @@
-import styled from "styled-components";
+/* import styled from "styled-components";
 import { useRef, useState, useEffect } from "react";
 import React from "react";
 import axios from "axios";
@@ -92,3 +92,4 @@ const BoardEach = (onEdit, onDelete, created_date, content, title, id) => {
 };
 
 export default BoardEach;
+ */

@@ -8,7 +8,7 @@ const config = require('./config/key');
 app.use(bodyParser.urlencoded({ extended: true}));
 
 app.use(bodyParser.json());
-app.use(cookieParser())
+app.use(cookieParser());
 const mongoose = require('mongoose');
 const { type } = require('express/lib/response');
 const res = require('express/lib/response');
@@ -21,9 +21,4 @@ mongoose.connect(config.mongoURI,{
 app.use('/api/users', require('./routes/users'));
 app.use('/api/board', require('./routes/board'));
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 2c6486c56818e1e62db30ee7514bbb8462cc9f69
 app.listen(port, () => console.log(`Example app listening on port${port}!`))

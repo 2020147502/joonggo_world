@@ -1,23 +1,15 @@
 import { createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-<<<<<<< HEAD
-=======
-import NaverGNB from "./components/NaverGNB";
->>>>>>> 2c6486c56818e1e62db30ee7514bbb8462cc9f69
-import GroupArea from "./components/GroupArea";
-import MainArea from "./components/MainArea";
-import Board from "./board/Board";
-import Header from "./components/Header";
-import Mypage from "./components/Mypage";
-import Login from "./components/Login";
+import Router from "./Router";
+
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -45,6 +37,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 100;
 }
 ol, ul {
 	list-style: none;
@@ -65,19 +59,11 @@ table {
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyle />
-      <Header />
-      <GroupArea />
-      <Board />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<MainArea />} />
-        <Route path="/mypage" element={<Mypage />} />
-        <Route path="/board" element={<Board />} />
-      </Routes>
+      	<Router />
       <ReactQueryDevtools initialIsOpen={true} />
-    </BrowserRouter>
+    </>
   );
 }
 
