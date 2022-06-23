@@ -49,8 +49,9 @@ const SubmitBtn = styled.button`
   margin-bottom: 50px;
 `;
 
-const Label = styled.button`
-  margin: 30px;
+const Label = styled.label`
+  font-weight: 800;
+  margin-top: 15px;
 `;
 
 function SignUp() {
@@ -76,11 +77,11 @@ function SignUp() {
     <Container>
       <h1>sign up</h1>
       <form onSubmit={handleSubmit(onValid)}>
-        <label htmlFor="email">이메일</label>
+        <Label htmlFor="email">이메일</Label>
         <Input
           id="email"
           {...register("email", {
-            required: "이메일은 필수값입니다.",
+            required: "필수 정보입니다.",
             pattern: {
               value:
                 /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
@@ -89,11 +90,11 @@ function SignUp() {
           })}
         />
         <span>{errors?.email?.message}</span>
-        <label htmlFor="username">이름</label>
+        <Label htmlFor="username">이름</Label>
         <Input
           id="username"
           {...register("username", {
-            required: "사용자이름은 필수값입니다.",
+            required: "필수 정보입니다.",
             minLength: {
               value: 2,
               message: "사용자이름은 2글자 이상입니다.",
@@ -101,11 +102,11 @@ function SignUp() {
           })}
         />
         <span>{errors?.username?.message}</span>
-        <label htmlFor="password">비밀번호</label>
+        <Label htmlFor="password">비밀번호</Label>
         <Input
           id="password"
           {...register("password", {
-            required: "비밀번호는 필수값입니다.",
+            required: "필수 정보입니다.",
             minLength: {
               value: 8,
               message: "비밀번호는 8글자 이상입니다.",
@@ -113,11 +114,11 @@ function SignUp() {
           })}
         />
         <span>{errors?.password?.message}</span>
-        <label htmlFor="confirmPassword">비밀번호 재확인</label>
+        <Label htmlFor="confirmPassword">비밀번호 재확인</Label>
         <Input
           id="confirmPassword"
           {...register("confirmPassword", {
-            required: "비밀번호 확인은 필수값입니다.",
+            required: "필수 정보입니다.",
           })}
         />
         <span>{errors?.confirmPassword?.message}</span>
