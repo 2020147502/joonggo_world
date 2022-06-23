@@ -31,7 +31,7 @@ export async function fetchAuth() {
 };
 
 export async function fetchLogout() {
-  return await fetch("/api/users/logout")
+  return await (await fetch("/api/users/logout")).json()
 };
 
 /* export async function fetchBoard(board, user) {
