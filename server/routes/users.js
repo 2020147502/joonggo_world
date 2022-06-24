@@ -1,13 +1,40 @@
 const express = require('express')
 const router = express.Router()
 const { User } = require("../models/User");
-
-
 const { auth } = require("../middleware/auth");
-
+const nodemailer = require("nodemailer")
 
 // --------------------로그인----------------------
+router.post('/configEmail',async(req,res) =>{
+    let authNum = Math.random().toString().substr(2,6);
+    let transporter = nodemailer.createTransport({
+        service:"gmail",
+        host: 'smtp.gmail.com',
+        port : 587,
+        auth: {
+            user: "sssaysssay@yonsei.ac.kr",
+            pass: "chang525!"
+        },
+    });
 
+    let mailOptions = {
+        from: 'funlol',
+        to: req.body.email,
+        subject: '회원가입을 위한 인증번호를 입력해주세요.',
+        text: authNum
+    };
+    if(req.body.email.includes('ac.kr') || req.body.email.includes('edu')){
+        transporter.sendMail(mailOptions, function (err, info) {
+            if(err) return res.json({ success: false,err})
+            console.log("Finish sending email : " + info.response);
+            res.send(authNum);
+            transporter.close()
+        });
+}
+    else{
+        res.send('대학 이메일이 아닙니다')
+    }
+});
 
 router.post('/register',(req,res) => {
     const user = new User(req.body);
