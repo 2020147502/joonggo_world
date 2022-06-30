@@ -131,7 +131,7 @@ function Login() {
     .mutateAsync(data)
     .then((res)=>{
       if(res.loginSuccess) {
-        localStorage.setItem("isLogin", true)
+        localStorage.setItem("userId",res.userId)
         navigate("/")
         queryClient.invalidateQueries("auth")
       } else {

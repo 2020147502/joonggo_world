@@ -2,8 +2,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { fetchSignUp } from "../api";
-
+import { fetchConfirmEmail, fetchSignUp } from "../api";
 
 
 const Input = styled.input`
@@ -38,6 +37,13 @@ const Container = styled.div`
   }
 `;
 
+const EmailConfirmBtn = styled.div`
+  width: 60px;
+  height: 30px;
+  background-color: #5b50b4;
+  color: white;
+`;
+
 const SubmitBtn = styled.button`
   width: 103%;
   height: 50px;
@@ -53,7 +59,8 @@ const SubmitBtn = styled.button`
 
 function SignUp() {
   const { register, handleSubmit, formState: {errors}, setError } = useForm();
-  const mutation = useMutation(fetchSignUp);
+  const mutationSignUp = useMutation(fetchSignUp);
+  const mutationConfirmEmail = useMutation(fetchConfirmEmail);
   const navigate = useNavigate();
   const onValid = (data) => {
     if(data.password !== data.confirmPassword) {
@@ -62,7 +69,7 @@ function SignUp() {
       {shouldFocus: true})
     }
     else(  
-      mutation
+      mutationSignUp
       .mutateAsync(data)
       .then((res) => {      
         if(res.success) {
@@ -74,7 +81,11 @@ function SignUp() {
         }
       }))
   }
-
+  const emailConfirmHandler = (data) => {
+    mutationConfirmEmail
+    .mutateAsync(data)
+    .then(res=>console.log(res))
+  }
   return(
     <Container>
       <h1>sign up</h1>
@@ -88,6 +99,7 @@ function SignUp() {
           }
           })}
         />
+        <EmailConfirmBtn onClick={emailConfirmHandler}>인증하기</EmailConfirmBtn>
         <span>{errors?.email?.message}</span>
         <label htmlFor="username">Username</label>
         <Input id="username" {...register("username", {

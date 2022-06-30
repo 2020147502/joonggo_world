@@ -17,7 +17,6 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/mypage" element={<AuthRoute><Mypage /></AuthRoute>} />
         <Route path="/board" element={<Board />} />
-        <Route path="/mypage" element={<Mypage />}/>
       </Routes>
     </>
   )

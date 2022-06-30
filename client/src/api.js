@@ -13,6 +13,19 @@ export async function fetchSignUp(user) {
   })).json();
 };
 
+export async function fetchConfirmEmail(user) {
+  return await (await fetch("/api/users/configEmail", {
+    method: "post",
+    headers: {
+      "content-type" : "application/json"
+    },
+    body:JSON.stringify({
+      "email": user.email
+    })
+  })).json();
+}
+
+
 export async function fetchLogin(user) {
   return await(await fetch("/api/users/login", {
     method: "post",

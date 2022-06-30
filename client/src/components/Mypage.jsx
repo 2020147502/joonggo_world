@@ -14,7 +14,7 @@ function Mypage() {
     .mutateAsync()
     .then((res)=>{
         if(res.success) {
-        localStorage.removeItem("isLogin")
+        localStorage.removeItem("userId")
         navigate("/")
         queryClient.invalidateQueries("auth")
       } else {
