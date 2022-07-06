@@ -40,7 +40,7 @@ function Board() {
     <Routes>
       <Route path="/board/list" element={<BoardList boardList={data} />} />
       <Route path="/board/write" element={<Write onCreate={onCreate} />} />
-      <Route path="/board/:boardId" element={<BoardEach />} />
+      <Route path="/board/each" element={<BoardEach />} />
     </Routes>
   );
 }
