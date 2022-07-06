@@ -18,6 +18,10 @@ const BoardSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    product_catagory:{
+      type: String,
+      required:true
+    },
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
