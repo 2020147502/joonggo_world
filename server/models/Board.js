@@ -18,9 +18,9 @@ const BoardSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    product_catagory:{
+    product_catagory: {
       type: String,
-      required:true
+      required: true,
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

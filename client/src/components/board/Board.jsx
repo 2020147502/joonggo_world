@@ -4,7 +4,7 @@ import BoardEach from "./BoardEach";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useRef, useState } from "react";
-import { fetchBoard } from "../api";
+import { fetchBoard } from "../../api";
 
 function Board() {
   const [data, setData] = useState([]);

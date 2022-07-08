@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import Board from "./board/Board";
-import Write from "./board/Write";
-import BoardList from "./board/BoardList";
 
+import Board from "./components/board/Board";
+import Write from "./components/board/Write";
+import BoardList from "./components/board/BoardList";
+import BoardItem from "./components/board/BoardItem";
 import Login from "./components/Login";
 import MainArea from "./components/MainArea";
 import Mypage from "./components/Mypage";
@@ -27,6 +28,7 @@ function Router() {
         <Route path="/board" element={<Board />} />
         <Route path="/board/write" element={<Write />} />
         <Route path="/board/list" element={<BoardList />} />
+        <Route path="/board/item/:productId" element={<BoardItem />} />
       </Routes>
     </>
   );
