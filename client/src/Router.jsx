@@ -4,6 +4,7 @@ import Board from "./components/board/Board";
 import Write from "./components/board/Write";
 import BoardList from "./components/board/BoardList";
 import BoardItem from "./components/board/BoardItem";
+import FixWrite from "./components/board/FixWrite";
 import Login from "./components/Login";
 import MainArea from "./components/MainArea";
 import Mypage from "./components/Mypage";
@@ -29,6 +30,7 @@ function Router() {
         <Route path="/board/write" element={<Write />} />
         <Route path="/board/list" element={<BoardList />} />
         <Route path="/board/item/:productId" element={<BoardItem />} />
+        <Route path="/board/fix/:productId" element={<FixWrite />} />
       </Routes>
     </>
   );

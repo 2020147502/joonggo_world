@@ -37,9 +37,6 @@ const BoardList = () => {
   const [Info, setInfo] = useState([]);
 
   useEffect(() => {
-    // setInfo(dummyData);
-    // let d = new Date();
-    // console.log(d.toLocaleDateString());
     Axios.post("/api/board/index").then((response) => {
       if (response.data.success) {
         alert("잘 가져왔습니다.");
