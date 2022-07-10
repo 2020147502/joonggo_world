@@ -1,9 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 
-import Board from "./components/board/Board";
 import Write from "./components/board/Write";
 import BoardList from "./components/board/BoardList";
-import BoardItem from "./components/board/BoardItem";
+import BoardDetails from "./components/board/BoardDetails";
 import FixWrite from "./components/board/FixWrite";
 import Login from "./components/Login";
 import MainArea from "./components/MainArea";
@@ -26,10 +25,9 @@ function Router() {
             </AuthRoute>
           }
         />
-        <Route path="/board" element={<Board />} />
         <Route path="/board/write" element={<Write />} />
         <Route path="/board/list" element={<BoardList />} />
-        <Route path="/board/item/:productId" element={<BoardItem />} />
+        <Route path="/board/item/:productId" element={<BoardDetails />} />
         <Route path="/board/fix/:productId" element={<FixWrite />} />
       </Routes>
     </>

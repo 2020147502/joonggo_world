@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, Route, useParams, useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
-import BoardEach from "./BoardEach";
 
 const Container = styled.div`
   max-width: 800px;
@@ -20,7 +19,7 @@ const Container = styled.div`
   }
 `;
 
-const BoardItem = () => {
+const BoardDetails = () => {
   const { productId } = useParams();
   const [Product, setProduct] = useState({});
 
@@ -31,7 +30,6 @@ const BoardItem = () => {
       .get(`/api/board/products_by_id?id=${productId}`)
       .then((response) => {
         setProduct(response.data);
-        console.log(response.data);
       })
       .catch((err) => alert(err));
   }, []);
@@ -68,4 +66,4 @@ const BoardItem = () => {
   );
 };
 
-export default BoardItem;
+export default BoardDetails;

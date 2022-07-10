@@ -1,8 +1,9 @@
-import BoardItem from "./BoardItem.jsx";
+import BoardDetails from "./BoardDetails.jsx";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Axios from "axios";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
   max-width: 800px;
@@ -74,7 +75,7 @@ const BoardList = () => {
                   <Link to={`/board/item/${x._id}`}>{x.title}</Link>
                 </td>
                 <td>{x.author}</td>
-                <td>{x.updatedAt.substring(0, 10)}</td>
+                <td>{x.createdAt.substring(0, 10)}</td>
                 <td>{x.views}</td>
               </tr>
             );
