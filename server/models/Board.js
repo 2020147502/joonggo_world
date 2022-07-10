@@ -18,8 +18,8 @@ const BoardSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    product_catagory: {
-      type: String,
+    price: {
+      type: Number,
       required: true,
     },
     author: {
