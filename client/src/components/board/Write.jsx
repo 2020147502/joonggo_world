@@ -7,9 +7,8 @@ const Write = () => {
   const data = {
     title: "",
     body: "",
-    product_type: "판매",
-    product_catagory: "생략",
-
+    product_type: "default",
+    price: 0,
     // Images: [],
   };
 

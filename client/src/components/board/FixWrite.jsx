@@ -15,7 +15,6 @@ const FixWrite = () => {
         data={data}
         isEdit={true}
         headerText={"수정하기"}
-        ImgUpload={<ImgUpload />}
       />
     </>
   );
