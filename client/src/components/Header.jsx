@@ -43,7 +43,8 @@ const LoginBtn = styled.button`
 
 
 function Header() {
-  const {data:user} = useQuery("auth", fetchAuth);
+  const {data} = useQuery("auth", fetchAuth);
+  const savedUser = localStorage.getItem("userId");
   return(
         <Container>
           <Link to="/">
@@ -52,7 +53,7 @@ function Header() {
               <span>MARKET</span>
             </Logo>
           </Link>
-          {user?.isAuth ? (            
+          {data?.isAuth && data?._id == savedUser ? (
             <Link to="/Mypage">
               <LoginBtn>마이페이지</LoginBtn>
             </Link>
