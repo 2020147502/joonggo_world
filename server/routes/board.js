@@ -23,7 +23,7 @@ router.post('/index',(req,res) => {
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 
     Board.find()
-            .polulate('author')
+            // .polulate('author')
             .sort({'product_id':-1})
             .skip(skip)
             .limit(limit)
