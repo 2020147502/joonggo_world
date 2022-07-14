@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { fetchConfirmEmail, fetchSignUp } from "../api";
@@ -37,13 +37,6 @@ const Container = styled.div`
   }
 `;
 
-const EmailConfirmBtn = styled.div`
-  width: 60px;
-  height: 30px;
-  background-color: #5b50b4;
-  color: white;
-`;
-
 const SubmitBtn = styled.button`
   width: 103%;
   height: 50px;
@@ -68,23 +61,24 @@ function SignUp() {
       {message:"비밀번호가 일치하지 않습니다."},
       {shouldFocus: true})
     }
-    else(  
-      mutationSignUp
+    else {
+      mutationConfirmEmail
       .mutateAsync(data)
-      .then((res) => {      
+      .then((res) => {
+        console.log(res)
+        }
+      )
+/*       mutationSignUp
+      .mutateAsync(data)
+      .then((res) => {     
         if(res.success) {
-        alert("회원가입이 완료되었습니다.")
-        navigate("/login")
+          alert("회원가입이 완료되었습니다.")
+          navigate("/login")
         }
-        if(res.err?.code === 11000) {
+        else if(res.err?.code === 11000) {
           alert("이미 사용중인 이메일 입니다.")
-        }
-      }))
-  }
-  const emailConfirmHandler = (data) => {
-    mutationConfirmEmail
-    .mutateAsync(data)
-    .then(res=>console.log(res))
+        } */
+    }
   }
   return(
     <Container>
@@ -99,7 +93,6 @@ function SignUp() {
           }
           })}
         />
-        <EmailConfirmBtn onClick={emailConfirmHandler}>인증하기</EmailConfirmBtn>
         <span>{errors?.email?.message}</span>
         <label htmlFor="username">Username</label>
         <Input id="username" {...register("username", {

@@ -22,7 +22,7 @@ export async function fetchConfirmEmail(user) {
     body:JSON.stringify({
       "email": user.email
     })
-  })).json();
+  }));
 }
 
 

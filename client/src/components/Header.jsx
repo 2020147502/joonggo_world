@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchAuth } from "../api";
 
-
 const Container = styled.div`
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  a{
+  a {
     text-decoration: none;
   }
 `;
@@ -21,7 +20,7 @@ const Logo = styled.div`
   font-size: 40px;
   line-height: 80%;
   text-align: left;
-  margin-left: 30px;
+  margin-left: 80px;
   span:first-child {
     color: #5b50b4;
   }
@@ -33,14 +32,12 @@ const Logo = styled.div`
 const LoginBtn = styled.button`
   width: 80px;
   height: 30px;
-  margin-right: 30px;
+  margin-right: 80px;
   border: none;
   border-radius: 10px;
-  background-color:#5b50b4;
-  color: white; 
+  background-color: #5b50b4;
+  color: white;
 `;
-
-
 
 function Header() {
   const {data} = useQuery("auth", fetchAuth);
