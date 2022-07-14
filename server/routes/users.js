@@ -18,21 +18,24 @@ router.post('/configEmail',async(req,res) =>{
     });
 
     let mailOptions = {
-        from: 'funlol',
+        from: 'joonggo',
         to: req.body.email,
         subject: '회원가입을 위한 인증번호를 입력해주세요.',
         text: authNum
     };
     if(req.body.email.includes('ac.kr') || req.body.email.includes('edu')){
         transporter.sendMail(mailOptions, function (err, info) {
-            if(err) return res.json({ success: false,err})
+            if(err) return res.status(400).json({ success: false,err})
             console.log("Finish sending email : " + info.response);
-            res.send(authNum);
+            return res.status(200).json({
+                success: true,
+                number : authNum
+            }),
             transporter.close()
         });
 }
     else{
-        res.send('대학 이메일이 아닙니다')
+        res.status(400).send('대학 이메일이 아닙니다')
     }
 });
 
