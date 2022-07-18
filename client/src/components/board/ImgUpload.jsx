@@ -7,23 +7,25 @@ const Container = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
-const ImgUpload = () => {
+const ImgUpload = (props) => {
   const [images, setImages] = useState([]);
 
   const handleDrop = (files) => {
     let formData = new FormData();
-    console.log(files);
+    console.log(files[0], formData);
     formData.append("file", files[0]);
-
+    console.log(formData);
     //이미지를 올리기 위해서는 아래와 같은 형식의 config가 필요
     const config = {
       header: { "content-type": "multipart/form-data" },
     };
 
-    Axios.post("/api/borad/image", formData, config).then((response) => {
+    Axios.post("/api/board/image", formData, config).then((response) => {
+      console.log(response);
       if (response.data.success) {
         console.log(response.data);
         setImages([...images, response.data.filePath]);
+        props.refreshFunction([...images, response.data.filePath]);
       } else {
         alert("파일을 저장하는데 실패했습니다.");
       }
@@ -31,7 +33,7 @@ const ImgUpload = () => {
   };
   return (
     <div>
-      <Dropzone onDrop={ImgUpload}>
+      <Dropzone onDrop={handleDrop}>
         {({ getRootProps, getInputProps }) => (
           <section>
             <Container

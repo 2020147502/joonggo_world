@@ -206,7 +206,7 @@ const BoardList = () => {
 
         <tbody>
           {Info.map((x) => {
-            return <BoardEach {...x} />;
+            return <BoardEach key={x._id} {...x} />;
           })}
         </tbody>
       </Table>

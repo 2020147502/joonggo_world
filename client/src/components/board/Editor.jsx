@@ -55,7 +55,7 @@ const ProductTypes = [
   { key: 2, value: "구매" },
 ];
 
-const Editor = ({ productId, data, isEdit, headerText, ImgUpload }) => {
+const Editor = ({ productId, data, isEdit, headerText }) => {
   const navigate = useNavigate();
 
   const categoryInput = useRef();
@@ -64,7 +64,7 @@ const Editor = ({ productId, data, isEdit, headerText, ImgUpload }) => {
   const bodyInput = useRef();
 
   const [state, setState] = useState({});
-
+  const [images, setImages] = useState([]);
   useEffect(() => {
     if (isEdit) {
       Axios.get(`/api/board/products_by_id?id=${productId}`)
@@ -83,6 +83,10 @@ const Editor = ({ productId, data, isEdit, headerText, ImgUpload }) => {
       ...state,
       [e.target.name]: e.target.value,
     });
+  };
+  //이미지 업데이트
+  const updateImages = (newImages) => {
+    setImages(newImages);
   };
 
   //제출 관리 함수
@@ -161,7 +165,6 @@ const Editor = ({ productId, data, isEdit, headerText, ImgUpload }) => {
             ))}
           </select>
           <br />
-
           <input
             ref={titleInput}
             type="text"
@@ -171,7 +174,6 @@ const Editor = ({ productId, data, isEdit, headerText, ImgUpload }) => {
             value={state.title || ""}
           />
           <br />
-
           <input
             ref={priceInput}
             type="number"
@@ -182,9 +184,8 @@ const Editor = ({ productId, data, isEdit, headerText, ImgUpload }) => {
             value={state.price || ""}
           />
           <br />
-
           {/*제품 설명 란에 이미지 첨부할 수 있는 기능 탑재*/}
-          {ImgUpload}
+          <ImgUpload refreshFunction={updateImages} />
 
           <br />
           <textarea
@@ -196,7 +197,6 @@ const Editor = ({ productId, data, isEdit, headerText, ImgUpload }) => {
             onChange={handleChangeState}
             value={state.body || ""}
           ></textarea>
-
           <br />
           <br />
           <button className="submit-button">입력</button>
