@@ -1,5 +1,8 @@
 import BoardDetails from "./BoardDetails.jsx";
-import React, { useState, useEffect } from "react";
+import BoardEach from "./BoardEach.jsx";
+import Loader from "./Loader.jsx";
+
+import { memo, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import Axios from "axios";
 import { Link } from "react-router-dom";
@@ -118,41 +121,17 @@ const Table = styled.table`
     }
   }
 `;
-// const dummyData = [
-//   {
-//     product_type: "판매",
-//     title: "핸드폰",
-//     price: 1000,
-//     author: "가가",
-//     views: 1,
-//     createdAt: "1234567891011",
-//   },
-//   {
-//     product_type: "판매",
-//     title: "티비",
-//     price: 2000,
-//     author: "나나",
-//     views: 1,
-//     createdAt: "1234567891011",
-//   },
-//   {
-//     product_type: "판매",
-//     title: "전자레인지",
-//     price: 3000,
-//     author: "다다",
-//     views: 1,
-//     createdAt: "1234567891011",
-//   },
-// ];
 
 const BoardList = () => {
   const [Info, setInfo] = useState([]);
+  const body = {
+    limit: 10,
+  };
 
   useEffect(() => {
-    Axios.post("/api/board/index").then((response) => {
+    Axios.post("/api/board/index", body).then((response) => {
       console.log(response);
       if (response.data.success) {
-        alert("잘 가져왔습니다.");
         setInfo(response.data.productInfo);
       } else {
         alert("실패하였습니다.");
@@ -160,12 +139,56 @@ const BoardList = () => {
     });
   }, []);
 
+  const [target, setTarget] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [itemLists, setItemLists] = useState([1]);
+
+  useEffect(() => {
+    // console.log(itemLists);
+  }, [itemLists]);
+
+  const getMoreItem = async () => {
+    setIsLoaded(true);
+    Axios.post("/api/board/index", body).then((response) => {
+      console.log(response);
+      if (response.data.success) {
+        console.log("잘 가져왔습니다.");
+        setInfo(response.data.productInfo);
+      } else {
+        alert("실패하였습니다.");
+      }
+    });
+    try {
+      body.limit += 10;
+    } catch (err) {}
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsLoaded(false);
+  };
+
+  const onIntersect = async ([entry], observer) => {
+    if (entry.isIntersecting && !isLoaded) {
+      observer.unobserve(entry.target);
+      await getMoreItem();
+      observer.observe(entry.target);
+    }
+  };
+
+  useEffect(() => {
+    let observer;
+    if (target) {
+      observer = new IntersectionObserver(onIntersect, {
+        threshold: 0.4,
+      });
+      observer.observe(target);
+    }
+    return () => observer && observer.disconnect();
+  }, [target]);
+
   return (
     <>
       <Container>
         <h1>전체글보기</h1>
         <br />
-        <h3>{Info.length}개의 게시글이 있습니다.</h3>
         <hr />
       </Container>
 
@@ -183,35 +206,14 @@ const BoardList = () => {
 
         <tbody>
           {Info.map((x) => {
-            return (
-              <tr key={x._id}>
-                <td>{x.product_type}</td>
-                <td>
-                  <Link to={`/board/item/${x._id}`}>{x.title}</Link>
-                </td>
-                <td>{x.price}</td>
-                <td>{x.author}</td>
-                <td>{x.createdAt.substring(0, 10)}</td>
-                <td>{x.views}</td>
-              </tr>
-            );
+            return <BoardEach {...x} />;
           })}
-          {/*{dummyData.map((x) => {
-            return (
-              <tr key={x._id}>
-                <td>{x.product_type}</td>
-                <td>
-                  <Link to={`/board/item/${x._id}`}>{x.title}</Link>
-                </td>
-                <td>{x.price}</td>
-                <td>{x.author}</td>
-                <td>{x.createdAt.substring(0, 10)}</td>
-                <td>{x.views}</td>
-              </tr>
-            );
-          })}*/}
         </tbody>
       </Table>
+
+      <div ref={setTarget} className="Target-Element">
+        {isLoaded && <Loader />}
+      </div>
     </>
   );
 };
