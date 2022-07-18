@@ -1,9 +1,25 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { fetchConfirmEmail, fetchSignUp } from "../api";
+import EmailAuthModal from "./EmailAuthModal";
 
+
+const Container = styled.div`
+  max-width: 500px;
+  margin: 0px auto;
+  h1 {
+    text-transform: uppercase;
+    font-size: 50px;
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
 const Input = styled.input`
   width: 100%;
@@ -20,20 +36,6 @@ const Input = styled.input`
   margin-bottom: 20px;
   ::placeholder {
     color: #808080;
-  }
-`;
-
-const Container = styled.div`
-  max-width: 500px;
-  margin: 0px auto;
-  h1 {
-    text-transform: uppercase;
-    font-size: 50px;
-    text-align: center;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
   }
 `;
 
@@ -55,6 +57,7 @@ function SignUp() {
   const mutationSignUp = useMutation(fetchSignUp);
   const mutationConfirmEmail = useMutation(fetchConfirmEmail);
   const navigate = useNavigate();
+  const [ showModal, setShowModal ] = useState(false);
   const onValid = (data) => {
     if(data.password !== data.confirmPassword) {
       setError("confirmPassword",
@@ -66,20 +69,42 @@ function SignUp() {
       .mutateAsync(data)
       .then((res) => {
         console.log(res)
+        // 학교 이메일이면
+        if(res.success) {
+          // 인증메일 보내는 시간동안 로딩 후 모달 열기
+          //모달열어서, 인증번호 입력받기
+          setShowModal(true)
+        }
+        // 학교 이메일이 아니면
+        else if(!res.success) {
+          alert(res.message)
+        }
         }
       )
+      
+      // 인증번호 전송 (인증)
+      // 모달띄워서 입력받기
+      // 입력받은 인증번호와 보낸 인증번호가 일치하는지 확인(인증)
+      // 사용중인 이메일은 아닌가? (가입)
+      // 가입성공(가입)
+
+
+      
 /*       mutationSignUp
       .mutateAsync(data)
-      .then((res) => {     
-        if(res.success) {
+      .then ((res) => {     
+          if(res.success) {
           alert("회원가입이 완료되었습니다.")
           navigate("/login")
         }
         else if(res.err?.code === 11000) {
           alert("이미 사용중인 이메일 입니다.")
-        } */
-    }
+        }
+      }) */
+
+
   }
+}
   return(
     <Container>
       <h1>sign up</h1>
@@ -116,6 +141,7 @@ function SignUp() {
         <span>{errors?.confirmPassword?.message}</span>
         <SubmitBtn>sign up</SubmitBtn>
       </form>
+      { showModal ? <EmailAuthModal /> : null }
     </Container>
   )
 }
