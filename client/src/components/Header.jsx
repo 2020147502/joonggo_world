@@ -40,25 +40,26 @@ const LoginBtn = styled.button`
 `;
 
 function Header() {
-  const { data: user } = useQuery("auth", fetchAuth);
-  return (
-    <Container>
-      <Link to="/">
-        <Logo>
-          <span>CAMPUS</span>
-          <span>MARKET</span>
-        </Logo>
-      </Link>
-      {user?.isAuth ? (
-        <Link to="/Mypage">
-          <LoginBtn>마이페이지</LoginBtn>
-        </Link>
-      ) : (
-        <Link to="/login">
-          <LoginBtn>로그인</LoginBtn>
-        </Link>
-      )}
-    </Container>
-  );
+  const {data} = useQuery("auth", fetchAuth);
+  const savedUser = localStorage.getItem("userId");
+  return(
+        <Container>
+          <Link to="/">
+            <Logo>
+              <span>CAMPUS</span>
+              <span>MARKET</span>
+            </Logo>
+          </Link>
+          {data?.isAuth && data?._id == savedUser ? (
+            <Link to="/Mypage">
+              <LoginBtn>마이페이지</LoginBtn>
+            </Link>
+            ) : (
+            <Link to="/login">
+              <LoginBtn>로그인</LoginBtn>
+            </Link>
+            )}
+        </Container>
+  )
 }
 export default Header;
