@@ -1,6 +1,6 @@
 import BoardDetails from "./BoardDetails.jsx";
-import BoardEach from "./BoardEach.jsx";
-import Loader from "./Loader.jsx";
+import BoardEach from "../components/board/BoardEach.jsx";
+import Loader from "../components/board/Loader.jsx";
 
 import { memo, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";

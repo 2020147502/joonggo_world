@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import ImgUpload from "./ImgUpload";
-import Editor from "./Editor";
+import ImgUpload from "../components/board/ImgUpload";
+import Editor from "../components/board/Editor";
 
 const Write = () => {
   const data = {

@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 
-import Write from "./components/board/Write";
-import BoardList from "./components/board/BoardList";
-import BoardDetails from "./components/board/BoardDetails";
-import FixWrite from "./components/board/FixWrite";
-import Login from "./components/Login";
+import Write from "./pages/Write";
+import BoardList from "./pages/BoardList";
+import BoardDetails from "./pages/BoardDetails";
+import FixWrite from "./pages/FixWrite";
+import Login from "./pages/Login";
 import MainArea from "./components/MainArea";
-import Mypage from "./components/Mypage";
-import SignUp from "./components/SignUp";
+import Mypage from "./pages/Mypage";
+import SignUp from "./pages/SignUp";
 import AuthRoute from "./AuthRoute";
 
 function Router() {

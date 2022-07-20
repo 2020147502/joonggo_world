@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
-import ImgUpload from "./ImgUpload";
-import Editor from "./Editor";
+import ImgUpload from "../components/board/ImgUpload";
+import Editor from "../components/board/Editor";
 
 const FixWrite = () => {
   const data = {};
