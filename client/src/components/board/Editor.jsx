@@ -116,7 +116,7 @@ const Editor = ({ productId, data, isEdit, headerText }) => {
       Axios.post("/api/board", state).then((response) => {
         if (response.data.success) {
           alert("등록이 완료되었습니다.");
-          // navigate("/board/list");
+          navigate("/board/list");
         } else {
           alert("등록이 실패하였습니다.");
           console.log(response.data);

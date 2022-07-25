@@ -9,12 +9,13 @@ import MainArea from "./components/MainArea";
 import Mypage from "./pages/Mypage";
 import SignUp from "./pages/SignUp";
 import AuthRoute from "./AuthRoute";
+import CheckBox from "./components/board/CheckBox";
 
 function Router() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<MainArea />} />
+        <Route path="/" element={<BoardList />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route
@@ -26,7 +27,6 @@ function Router() {
           }
         />
         <Route path="/board/write" element={<Write />} />
-        <Route path="/board/list" element={<BoardList />} />
         <Route path="/board/item/:productId" element={<BoardDetails />} />
         <Route path="/board/fix/:productId" element={<FixWrite />} />
       </Routes>

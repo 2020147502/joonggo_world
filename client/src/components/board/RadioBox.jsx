@@ -1,4 +1,4 @@
-import { Checkbox, Card } from "antd";
+import { Checkbox, Card, Slider } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 
 import React, { useState } from "react";
@@ -11,27 +11,21 @@ const Container = styled.div`
   margin: 20px 40px;
 `;
 
-const CheckBox = ({ handleChange }) => {
+const RadioBox = ({ handleChange }) => {
   return (
     <Container>
-      <h5>카테고리</h5>
+      <h5>가격</h5>
       <hr />
       <input
-        className="구매"
-        defaultChecked
-        type="checkbox"
+        type="range"
+        step={10000}
+        min="0"
+        max="1000000"
+        defaultValue="1000000"
         onChange={handleChange}
       />
-      <span>구매</span>
-      <input
-        className="판매"
-        defaultChecked
-        type="checkbox"
-        onChange={handleChange}
-      />
-      <span>판매</span>
     </Container>
   );
 };
 
-export default CheckBox;
+export default RadioBox;
