@@ -10,6 +10,7 @@ import Mypage from "./pages/Mypage";
 import SignUp from "./pages/SignUp";
 import AuthRoute from "./AuthRoute";
 import CheckBox from "./components/board/CheckBox";
+import Test from "./Test";
 
 function Router() {
   return (
@@ -29,6 +30,7 @@ function Router() {
         <Route path="/board/write" element={<Write />} />
         <Route path="/board/item/:productId" element={<BoardDetails />} />
         <Route path="/board/fix/:productId" element={<FixWrite />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </>
   );
