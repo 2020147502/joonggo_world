@@ -3,7 +3,26 @@ const router = express.Router()
 const { Board } = require("../models/Board");
 const multer = require('multer')
 const viewObj = new Object() 
+
 // ----------------------게시판------------------------
+
+function convertProductTime(product_li){
+    date_li = []
+    for (let i = 0; i < product_li.length; i++) {
+        create_time = product_li[i].createdAt
+        update_time = product_li[i].updatedAt
+        date_tuple = {"create":convertTimestamp(create_time),"update":convertTimestamp(update_time)}
+        date_li.push(date_tuple)
+    }
+    return date_li
+}
+
+function convertTimestamp(time){
+    const year = time.getFullYear();
+    const month = time.getMonth() + 1;
+    const date = time.getDate();
+    return `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`
+}
 
 // 상품 등록하기
 
@@ -28,8 +47,9 @@ router.post('/index',(req,res) => {
             .skip(skip)
             .limit(limit)
             .exec(((err,productInfo) => {
+                date_li = convertProductTime(productInfo)
                 if(err) return res.status(400).json({success:false,err})
-                return res.status(200).json({success:true,productInfo,postSize:productInfo.length})
+                return res.status(200).json({success:true,productInfo,date_li,postSize:productInfo.length})
             }))
 }) 
 
@@ -152,4 +172,6 @@ router.post('/image', (req,res) => {
         })
     })
 })
+
+
 module.exports = router;

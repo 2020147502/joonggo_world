@@ -34,11 +34,10 @@ const BoardSchema = mongoose.Schema(
     images: {
       type: Array,
       default: [],
-    },
+    }
   },
   { timestamps: true }
 );
-
 BoardSchema.index(
   {
     title: "text",
